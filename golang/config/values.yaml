@@ -1,0 +1,8 @@
+replicaCount: 2
+
+context: golang
+image: golang
+targetPort: 8080
+port: 8080
+ingress:
+  path: /golang

@@ -1,0 +1,8 @@
+replicaCount: 2
+
+context: nodejs
+image: nodejs
+targetPort: 3000
+port: 3000
+ingress:
+  path: /nodejs

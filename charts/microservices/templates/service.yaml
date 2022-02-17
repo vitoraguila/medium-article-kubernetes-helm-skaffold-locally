@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.context }}-srv
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+  {{- if .Values.release }}
+    meta.helm.sh/release-name: {{ .Values.release }}
+  {{- end }}
+  {{- if .Values.namespace }}
+    meta.helm.sh/release-namespace: {{ .Values.namespace }}
+  {{- end }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: {{ .Values.context }}
+      port: {{ .Values.port }}
+      protocol: TCP
+      targetPort: {{ .Values.targetPort }}
+  selector:
+    app: {{ .Values.context }}

@@ -1,0 +1,12 @@
+[
+  {
+		"customerID" : "1",
+		"firstName" : "User 1 firstname NODEJS",
+		"lastName" : "User 1 lastname NODEJS"
+	},
+  {
+		"customerID" : "2",
+		"firstName" : "User 2 firstname NODEJS",
+		"lastName" : "User 2 lastname NODEJS"
+	}
+]

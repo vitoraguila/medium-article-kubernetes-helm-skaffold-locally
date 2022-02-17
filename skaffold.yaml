@@ -1,0 +1,56 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+
+build:
+  artifacts:
+    - image: python
+      context: python
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.py"
+            dest: .
+
+    - image: golang
+      context: golang
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "users/**/*.go"
+            dest: .
+
+    - image: nodejs
+      context: nodejs
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.js"
+            dest: .
+  local: {}
+
+deploy:
+  helm:
+    releases:
+      - name: python
+        chartPath: charts/microservices
+        valuesFiles:
+          - './python/config/values.yaml'
+        artifactOverrides:
+          image: python
+
+      - name: golang
+        chartPath: charts/microservices
+        valuesFiles:
+          - './golang/config/values.yaml'
+        artifactOverrides:
+          image: golang
+
+      - name: nodejs
+        chartPath: charts/microservices
+        valuesFiles:
+          - './nodejs/config/values.yaml'
+        artifactOverrides:
+          image: nodejs

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.context }}-depl
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+  {{- if .Values.release }}
+    meta.helm.sh/release-name: {{ .Values.release }}
+  {{- end }}
+  {{- if .Values.namespace }}
+    meta.helm.sh/release-namespace: {{ .Values.namespace }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.context }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.context }}
+    spec:
+      containers:
+        - image: {{ .Values.image }}
+          name: {{ .Values.context }}
+          imagePullPolicy: {{ .Values.pullPolicy | default "Always"  }}
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi

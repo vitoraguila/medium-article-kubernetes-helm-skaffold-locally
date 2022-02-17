@@ -1,0 +1,12 @@
+[
+  {
+		"CustomerID" : "1",
+		"FirstName" : "User 1 firstname GOLANG",
+		"LastName" : "User 1 lastname GOLANG"
+	},
+  {
+		"CustomerID" : "2",
+		"FirstName" : "User 2 firstname GOLANG12133",
+		"LastName" : "User 2 lastname GOLANG"
+	}
+]

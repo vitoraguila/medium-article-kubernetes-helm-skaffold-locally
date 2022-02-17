@@ -1,0 +1,10 @@
+replicaCount: 3
+
+context: microservices
+image: microservices:latest
+pullPolicy: Never
+targetPort: 80
+port: 5001
+ingress:
+  host: testing.com
+  path: /auth
